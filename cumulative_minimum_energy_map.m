@@ -6,10 +6,10 @@ function cumulativeEnergyMap = cumulative_minimum_energy_map(energyImage, seamDi
         M(1,:) = energyImage(1,:);
         for i = 2:rowSize
             for j = 1:colSize
-                if j == 1
-                    M(i, j) = energyImage(i,j) + min([M(i-1, j), M(i-1, j+1)]);
-                elseif j == colSize
-                    M(i, j) = energyImage(i,j) + min([M(i-1, j-1), M(i-1, j)]);
+                if j == 1  %if pixel is at left edge
+                    M(i, j) = energyImage(i,j) + min([M(i-1, j), M(i-1, j+1)]); 
+                elseif j == colSize  %if pixel is at right edge
+                    M(i, j) = energyImage(i,j) + min([M(i-1, j-1), M(i-1, j)]); 
                 else
                     M(i, j) = energyImage(i,j) + min([M(i-1, j-1), M(i-1, j), M(i-1, j+1)]);
                 end
